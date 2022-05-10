@@ -6,7 +6,8 @@ np.set_printoptions(suppress=True)
 
 def hist_cal(path):
     img=cv.imread(path)
-    hist=cv.calcHist([img],[0],None,[256],[0,255])
+    img_gray=cv.cvtColor(img,cv.COLOR_BGR2GRAY)
+    hist=cv.calcHist([img_gray],[0],None,[256],[0,255])
     l=[]
     hist=hist.tolist()
     for i in hist:

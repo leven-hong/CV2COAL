@@ -1,6 +1,3 @@
-from asyncio import shield
-
-from matplotlib.pyplot import axis
 from function import *
 from tqdm import tqdm
 import numpy as np
