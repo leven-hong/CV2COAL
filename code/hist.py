@@ -5,13 +5,13 @@ import numpy as np
 from tqdm import tqdm
 np.set_printoptions(suppress=True)
 
-def build_list():
+def build_list():   #建立x轴
     l=[]
     for i in range(256):
         l.append(i)
     return l
 
-def hist_cal(path):
+def hist_cal(path): #输入路径返回灰度图列表
     img=cv.imread(path)
     img_gray=cv.cvtColor(img,cv.COLOR_BGR2GRAY)
     hist=cv.calcHist([img_gray],[0],None,[256],[0,255])
@@ -21,25 +21,25 @@ def hist_cal(path):
         l.append(int(i[0]))
     return l
 
-def hist_save(x,hist,path):
+def hist_save(x,hist,path): #折线图保存
     plt.plot(x,hist,color='b')
     plt.savefig(path)
     plt.close()
 
-def d_hist(hist):
+def d_hist(hist):   #直方图一阶导
     dHist=[]
     for i in range(len(hist)):
         dHist.append(hist[i]-hist[i-1])
     return dHist
 
-def s_hist(hist):
+def s_hist(hist):   #直方图一阶积分
     sHist=[]
     sHist.append(hist[0])
     for i in hist[1:]:
         sHist.append(sHist[-1]+i)
     return(sHist)
 
-def hist(n):
+def main(n):
     histAll=[]
     dHistAll=[]
     sHistAll=[]
@@ -66,4 +66,4 @@ def hist(n):
     sHistSum=np.sum(sHistAll,axis=0)
     hist_save(l,sHistSum,'HIST_s.jpg')
 
-hist(75)
+main(75)
