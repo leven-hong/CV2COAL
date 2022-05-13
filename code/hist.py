@@ -1,4 +1,5 @@
 from re import L
+from turtle import color
 import matplotlib.pyplot as plt
 import cv2 as cv
 import numpy as np
@@ -23,6 +24,7 @@ def hist_cal(path): #输入路径返回灰度图列表
 
 def hist_save(x,hist,path): #折线图保存
     plt.plot(x,hist,color='b')
+    plt.axvline(30,color='r')
     plt.savefig(path)
     plt.close()
 
@@ -65,5 +67,7 @@ def main(n):
     hist_save(l,dHistSum,'HIST_d.jpg')
     sHistSum=np.sum(sHistAll,axis=0)
     hist_save(l,sHistSum,'HIST_s.jpg')
+    
+    
 
 main(75)
